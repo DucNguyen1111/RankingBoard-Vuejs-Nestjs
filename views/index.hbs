@@ -1,0 +1,199 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>App</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            box-sizing: border-box;
+            background: #FF4E50;
+            background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);
+            background: linear-gradient(to right, #F9D423, #FF4E50);
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding-top: 20px;
+        }
+
+        .ranking__list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ranking__list-item {
+            display: block;
+            background: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 0 40px 0px rgb(0 0 0 / 17%);
+            margin-top: 25px;
+            padding: 28px 30px 30px 35px;
+            position: relative;
+            width: 500px;
+        }
+
+        .profile__header {
+            display: flex;
+            margin-bottom: 40px;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .profile__header div {
+            min-width: 30%;
+        }
+
+        .profile__status {
+            display: flex;
+            font-family: "Courier New";
+            font-size: 30px;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .profile__status div {
+            min-width: 30%;
+        }
+
+        .profile__views {
+            flex: none;
+            margin-left: 30px;
+            width: 140px;
+        }
+
+
+        .profile__button {
+            border-radius: 50px;
+            border: 1px solid #000000;
+            color: #000000;
+            display: block;
+            font-family: "Montserrat", sans-serif;
+            font-size: 15px;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            transition: ease-in-out 250ms background, ease-in-out 250ms color;
+        }
+
+        .profile__button:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .profile__username {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            margin: 0;
+            text-align: center;
+        }
+
+        .profile__badge {
+            display: flex;
+            justify-content: center;
+        }
+
+        .trophy {
+            font-size: 40px;
+            color: #fcc200;
+        }
+
+        .gold {
+            font-size: 40px;
+            color: #ffd700;
+        }
+
+        .silver {
+            font-size: 40px;
+            color: #bfc1c2;
+        }
+
+        .bronze {
+            font-size: 40px;
+            color: #d2b48c;
+        }
+
+        .normal {
+            font-size: 40px;
+        }
+
+        .solved {
+            color: greenyellow;
+        }
+
+        .finish {
+            color: #20BFE7;
+        }
+
+        .profile__order {
+            display: flex;
+            justify-content: center;
+            border-right: 1px solid #e9e9e9;
+        }
+
+        .profile__solved-prob {
+            border-right: 1px solid #e9e9e9;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <ul class="ranking__list">
+                <li v-for="(user,index) in users" class="ranking__list-item">
+                    <div class="profile__header">
+                        <div class="profile__badge">
+
+                            <i v-if="index==0" class="fa fa-trophy trophy" aria-hidden="true"></i>
+                            <i v-else-if="index==1" class="fa fa-star gold" aria-hidden="true"></i>
+                            <i v-else-if="index==2" class="fa fa-star silver" aria-hidden="true"></i>
+                            <i v-else-if="index==3" class="fa fa-star bronze" aria-hidden="true"></i>
+
+                        </div>
+                        <div>
+                            <h4 class="profile__username">\{{user.name}}</h4>
+                        </div>
+                        <div class="profile__views">
+                            <a class="profile__button" :href="user.linkSPOJ">View Profile</a>
+                        </div>
+                    </div>
+                    <div class="profile__status">
+                        <div class="profile__order">
+                            <span>\{{index+1}}</span>
+                        </div>
+                        <div class="profile__solved-prob">
+                            <i class="fa fa-check solved" aria-hidden="true"></i>
+                            <span>\{{user.solvedProblems}}</span>
+                        </div>
+                        <div class="profile__finish">
+                            <i class="fa fa-pencil-square-o finish" aria-hidden="true"></i>
+                            <span>\{{user.finishing}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js';
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            users: {{{ users }}}
+        }
+    });
+</script>
+
+</html>
