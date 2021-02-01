@@ -178,7 +178,7 @@ export class AppController {
       ]);
       for (let i = 0; i < usersInfo.length; i++) {
         usersInfo[i].solvedProblems += solvedPro[i];
-        const finishingPercentage = Math.min(100, (usersInfo[i].goal / 100) * solvedPro[i]);
+        const finishingPercentage = Math.min(100, (solvedPro[i] / (usersInfo[i].goal / 100)));
         usersInfo[i].finishing = finishingPercentage.toFixed(1) + '%';
       }
       usersInfo.sort(function (one, two) {
